@@ -30,18 +30,22 @@ export async function Header() {
           >
             Resources
           </Link>
-          <Link
-            href="/dashboard"
-            className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
-          >
-            Dashboard
-          </Link>
-          <Link
-            href="/submit"
-            className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
-          >
-            Submit
-          </Link>
+          {user && (
+            <>
+              <Link
+                href="/submit"
+                className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+              >
+                Submit
+              </Link>
+              <Link
+                href="/dashboard"
+                className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+              >
+                Dashboard
+              </Link>
+            </>
+          )}
         </nav>
 
         {/* Auth Section */}
