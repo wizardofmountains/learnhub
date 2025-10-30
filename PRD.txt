@@ -1,0 +1,298 @@
+
+RPM – MVP for "Learning Resources Sharing Platform"
+
+1. Project Overview
+Project Name: LearnHub (MVP)
+Short Description (1–2 sentences):
+A simple web app where users can share learning resources (link + short description) and browse them publicly.
+Project Goal (MVP):
+Ship a stable, usable base quickly: create, list, view, and delete resources — plus a basic search.
+Target Audience:
+Students, teachers, self-learners.
+Why it’s useful:
+Tiny stack, clear learning curve (Auth, CRUD, basic search, deployment). Real value even at MVP stage.
+
+2. Learning Goals (MVP)
+Auth & Access: Email/password login, protected routes.
+CRUD Basics: Create/read/delete resources (edit optional for MVP).
+Simple Search/Filter: Full-text search over title + description, filter by type.
+Responsive Basics: Mobile-first list of cards.
+Deployment: Production build and environment variables.
+
+
+3. MVP Core Features
+Main Features (MVP):
+Create Resource: Title, URL, short description, type (video/article/pdf).
+Browse Resources: Public list + detail page.
+User Dashboard: View own resources with stats (total count, type breakdown).
+Delete (owner-only).
+Search (title/description) + Type Filter.
+Auth: Sign up, log in/out.
+User Actions:
+Public: Browse list, view details, use search/filter.
+Logged in: Create resource, view dashboard, delete own items.
+Out of Scope for MVP (by design):
+Edit resource, tags/multi-filters, collections, likes/comments, roles/moderation, file uploads.
+
+4. Technical Stack (small & solid)
+Frontend: Next.js (React)
+Styling: Tailwind CSS
+Backend & DB: Supabase (Auth, Postgres)
+Hosting: Vercel (frontend) + Supabase Cloud
+Helpers: React Hook Form + Zod (basic validation)
+
+
+5. Data Model (MVP – minimal)
+Table: profiles
+Field
+Type
+Description
+id
+uuid
+Reference to auth.users.id (Supabase Auth)
+username
+text (unique)
+Display name
+created_at
+timestamptz
+Registration time
+
+Note: Separate table alongside Supabase Auth users.
+Foreign key: profiles.id → auth.users.id.
+Table: resources
+Field
+Type
+Description
+id
+uuid
+Primary key
+owner_id
+uuid (fk)
+Reference to profiles.id
+title
+text
+Resource title
+description
+text
+Short description (~500 chars)
+url
+text
+External link (HTTP/HTTPS)
+type
+text
+"video" | "article" | "pdf"
+created_at
+timestamptz
+Creation time
+
+RLS Policies (baseline):
+select for everyone
+insert only authenticated
+delete only when owner_id = auth.uid()
+
+5.5 Technical Implementation Notes
+Pagination: Cursor-based, initially 20 items per page.
+Search: Supabase ilike queries for MVP; upgrade to tsvector later.
+Loading States: Skeleton screens for lists, spinners for forms.
+Error Boundaries: Next.js error.tsx for graceful failures.
+URL Validation: HTTP/HTTPS accepted; reachability check deferred to Phase A.
+
+
+6. Pages & Navigation (MVP)
+Page
+Purpose
+Access
+/
+Landing: intro + latest resources
+Public
+/resources
+List with text search + type filter
+Public
+/resource/[id]
+Detail view
+Public
+/dashboard
+User's resources + stats
+Logged in
+/submit
+Create resource (form)
+Logged in
+/login
+Sign up / Sign in
+Public
+
+Header: Logo · Resources · Dashboard · Submit · Sign in/Profile
+Footer: Imprint · Privacy · Contact
+
+7. Examples: MVP Features & UI
+Create Resource (form fields):
+Title* (min. 3 chars)
+URL* (valid)
+Description (max. 500 chars)
+Type* (Select: Video/Article/PDF)
+Validation (simple):
+Required fields marked with *; URL check; inline error messages.
+List (mobile-first):
+Simple cards (title, type badge, short description, “Submitted by @username”, link icon).
+Search with 300 ms debounce (real-time), type dropdown, reset button.
+
+7.5 Responsive Layout Specifications
+Mobile (<768px): Single column, full-width cards (w-full).
+Tablet (768–1023px): 2-column grid, gap-4.
+Desktop (1024px+): 3-column grid, max-w-7xl container, centered.
+Card Specs: min-h-32, p-4, rounded-lg, shadow-sm, hover:shadow-md.
+
+7.6 Empty States
+No resources exist → “No resources yet. Be the first to share!”
+No search results → “No resources match your search.”
+User has no submissions → “You haven't submitted any resources yet.”
+
+7.7 Dashboard Page Specifications
+Purpose: Personal resource management for logged-in users.
+Access: Protected.
+Layout:
+Header: “My Dashboard” + “Create New Resource” button (top-right).
+Stats Cards (3-column on desktop):
+Total Resources
+Videos
+Articles
+PDFs
+Resources Grid: Same layout as /resources page.
+Card Enhancements: Edit placeholder, Delete button, timestamps.
+Empty State:
+“You haven't submitted any resources yet. Share your first learning resource!”
+Large “Create Resource” button.
+
+
+8. Milestones
+Pe
+Goal
+Content
+1
+Setup
+Next.js + Tailwind; Supabase; .env; base layout
+2
+Auth
+Email/password; session; protect /submit
+3a
+DB Tables
+Create profiles, resources
+3b
+DB Policies
+Add RLS policies
+3c
+Seed
+Add 5 sample resources
+4
+CRUD “Create”
+/submit form; insert; redirect
+5
+Read (List/Detail)
+/resources, /resource/[id]
+5b
+Dashboard
+/dashboard with stats
+6
+Delete
+Owner-only delete + confirm dialog
+7
+Styling & Deploy
+Mobile layout; deploy to Vercel
+
+
+
+9. Success Criteria (DoD – MVP)
+Live URL reachable; all core routes functional.
+Auth works (sign up/in/out).
+Create/list/view/delete work correctly.
+Search + type filter return correct results.
+Mobile UI usable and clear.
+RLS correctly prevents cross-user deletes.
+
+9.5 Success Metrics (Post-Launch)
+Week 1: 10+ resources, 5+ users.
+Lighthouse Mobile Score: ≥ 80 %.
+Page load: < 2 s.
+Security: 0 critical RLS violations.
+
+
+10. Roadmap (Post-MVP)
+Principle: Ship small, useful increments.
+Phase A – Usability+:
+Edit resources (Update)
+Better Search (sorting, debounce)
+Error toasts and states
+Enhanced Dashboard (timestamps, stats refresh)
+Phase B – Organization:
+Tags
+Collections
+Simple analytics
+Phase C – Quality & Trust:
+Report button / moderation
+Roles (User/Admin)
+SEO/meta/sitemap
+Phase D – Community:
+Comments
+Ratings
+Email notifications
+Phase E – Smart Features:
+AI summary (2–3 sentences)
+AI tag suggestions
+Learning path generator
+Phase F – Performance & Quality:
+SSR/ISR
+E2E + Unit tests
+Monitoring and alerts
+
+
+11. Minimal Task Plan (Concrete for MVP)
+Scaffold project (Next.js, Tailwind, layout).
+Set up Supabase, tables, RLS, .env.
+Auth UI with sign up/sign in.
+Create form (/submit), insert, redirect.
+List + Detail pages with pagination and filters.
+Dashboard with user stats.
+Delete with confirmation.
+Responsive styling + accessibility.
+Deploy to Vercel + seed data + README.
+
+12. Example: MVP Form Validation
+Field
+Rule
+Message
+Title
+Required, min. 3 chars
+“Please enter a clear title.”
+URL
+Required, must start with http(s)
+“Please enter a valid URL.”
+Type
+Required
+“Please choose a resource type.”
+Description
+Optional (20–500 chars)
+Show live counter (e.g., 312/500)
+
+
+
+13. Scope & Risks
+No file upload → simpler MVP.
+No moderation → all content public.
+Basic search → extended later.
+Risk: Spam/low quality → addressed in Phase C.
+
+13.5 Deployment Checklist
+Environment Variables:
+NEXT_PUBLIC_SUPABASE_URL
+NEXT_PUBLIC_SUPABASE_ANON_KEY
+(Optional) SUPABASE_SERVICE_ROLE_KEY
+Verify:
+RLS delete restriction works.
+Run seed script (5 resources).
+Create test account (test@learnhub.com).
+Smoke Test Checklist:
+Sign up/in/out works
+Create works
+List + Search work
+Delete own resource works
+Delete others’ resource fails
