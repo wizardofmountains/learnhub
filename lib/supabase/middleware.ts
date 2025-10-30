@@ -1,13 +1,25 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
-import { SUPABASE_URL, SUPABASE_ANON_KEY } from "@/lib/env";
 
 export async function updateSession(request: NextRequest) {
+  // Get env vars directly to handle missing values gracefully
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  // If environment variables are missing, allow request through
+  // This prevents 500 errors and allows error pages to render
+  if (!supabaseUrl || !supabaseAnonKey) {
+    console.error("Missing Supabase environment variables in middleware");
+    return NextResponse.next({
+      request,
+    });
+  }
+
   let supabaseResponse = NextResponse.next({
     request,
   });
 
-  const supabase = createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+  const supabase = createServerClient(supabaseUrl, supabaseAnonKey, {
       cookies: {
         getAll() {
           return request.cookies.getAll();
