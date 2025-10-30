@@ -7,6 +7,7 @@ import {
   signInSchema,
   signUpSchemaWithRefinement,
 } from "@/lib/validations/auth";
+import { SITE_URL } from "@/lib/env";
 
 // Error result type
 export interface ActionResult {
@@ -27,7 +28,7 @@ export async function signIn(
 
   if (!validationResult.success) {
     return {
-      error: validationResult.error.errors[0].message,
+      error: validationResult.error.issues[0].message,
     };
   }
 
@@ -64,7 +65,7 @@ export async function signUp(
 
   if (!validationResult.success) {
     return {
-      error: validationResult.error.errors[0].message,
+      error: validationResult.error.issues[0].message,
     };
   }
 
@@ -75,7 +76,7 @@ export async function signUp(
     email,
     password,
     options: {
-      emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/auth/confirm?next=/dashboard`,
+      emailRedirectTo: `${SITE_URL}/auth/confirm?next=/dashboard`,
     },
   });
 

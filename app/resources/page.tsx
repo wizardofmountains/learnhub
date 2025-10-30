@@ -4,6 +4,7 @@ import { ResourceCard } from "@/components/resources/resource-card";
 import { EmptyState } from "@/components/resources/empty-state";
 import type { ResourceWithOwner } from "@/lib/types";
 import { SearchFilter } from "./search-filter";
+import { IS_DEVELOPMENT } from "@/lib/env";
 
 export const metadata: Metadata = {
   title: "Browse Learning Resources | LearnHub",
@@ -56,7 +57,9 @@ export default async function ResourcesPage({
   const { data: resources, error } = await query;
 
   if (error) {
-    console.error("Error fetching resources:", error);
+    if (IS_DEVELOPMENT) {
+      console.error("Error fetching resources:", error);
+    }
   }
 
   const typedResources = (resources || []) as ResourceWithOwner[];

@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { createResourceSchema } from "@/lib/validations/resource";
+import { IS_DEVELOPMENT } from "@/lib/env";
 
 // Error result type
 export interface ActionResult {
@@ -38,7 +39,7 @@ export async function createResource(
 
   if (!validationResult.success) {
     return {
-      error: validationResult.error.errors[0].message,
+      error: validationResult.error.issues[0].message,
     };
   }
 
@@ -54,7 +55,9 @@ export async function createResource(
   });
 
   if (error) {
-    console.error("Error creating resource:", error);
+    if (IS_DEVELOPMENT) {
+      console.error("Error creating resource:", error);
+    }
     return {
       error: "Failed to create resource. Please try again.",
     };

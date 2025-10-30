@@ -26,7 +26,7 @@ export const descriptionSchema = z
 export const typeSchema = z.enum(
   [RESOURCE_TYPES.video, RESOURCE_TYPES.article, RESOURCE_TYPES.pdf],
   {
-    errorMap: () => ({ message: "Please select a valid resource type" }),
+    message: "Please select a valid resource type",
   }
 );
 

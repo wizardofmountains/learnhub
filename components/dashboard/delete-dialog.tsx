@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { Trash2, AlertTriangle } from "lucide-react";
 
+const IS_DEVELOPMENT = process.env.NODE_ENV === "development";
+
 interface DeleteDialogProps {
   resourceId: string;
   resourceTitle: string;
@@ -23,7 +25,9 @@ export function DeleteDialog({
       await onDelete(resourceId);
       setIsOpen(false);
     } catch (error) {
-      console.error("Failed to delete resource:", error);
+      if (IS_DEVELOPMENT) {
+        console.error("Failed to delete resource:", error);
+      }
     } finally {
       setIsDeleting(false);
     }

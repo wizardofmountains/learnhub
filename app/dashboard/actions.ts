@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
+import { IS_DEVELOPMENT } from "@/lib/env";
 
 export async function deleteResource(resourceId: string) {
   const supabase = await createClient();
@@ -24,7 +25,9 @@ export async function deleteResource(resourceId: string) {
     .eq("owner_id", user.id);
 
   if (error) {
-    console.error("Error deleting resource:", error);
+    if (IS_DEVELOPMENT) {
+      console.error("Error deleting resource:", error);
+    }
     return { error: "Failed to delete resource" };
   }
 
