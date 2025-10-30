@@ -15,8 +15,8 @@ interface DashboardResourceCardProps {
 const typeConfig = {
   video: {
     icon: Video,
-    bgColor: "bg-blue-100 dark:bg-blue-900/20",
-    textColor: "text-blue-700 dark:text-blue-300",
+    bgColor: "bg-rose-100 dark:bg-rose-900/20",
+    textColor: "text-rose-700 dark:text-rose-300",
     label: "Video",
   },
   article: {
@@ -120,7 +120,7 @@ export function DashboardResourceCard({ resource }: DashboardResourceCardProps) 
           href={resource.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-md p-1 text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-blue-600 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-blue-400"
+          className="rounded-md p-1 text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-rose-600 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-rose-400"
           aria-label={`Open ${resource.title} in new tab`}
         >
           <ExternalLink className="h-4 w-4" />

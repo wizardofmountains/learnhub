@@ -56,7 +56,7 @@ export function ResourceForm() {
             type="text"
             required
             minLength={3}
-            className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm placeholder-zinc-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:focus:border-blue-500"
+            className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm placeholder-zinc-400 focus:border-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:focus:border-rose-500"
             placeholder="e.g., Complete React Course 2025"
           />
           <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
@@ -78,7 +78,7 @@ export function ResourceForm() {
             type="url"
             required
             pattern="https?://.+"
-            className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm placeholder-zinc-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:focus:border-blue-500"
+            className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm placeholder-zinc-400 focus:border-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:focus:border-rose-500"
             placeholder="https://example.com/resource"
           />
           <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
@@ -98,7 +98,7 @@ export function ResourceForm() {
             id="type"
             name="type"
             required
-            className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:focus:border-blue-500"
+            className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:focus:border-rose-500"
           >
             <option value="">Select a type...</option>
             <option value={RESOURCE_TYPES.video}>Video</option>
@@ -124,7 +124,7 @@ export function ResourceForm() {
             rows={4}
             maxLength={500}
             onChange={(e) => setDescriptionLength(e.target.value.length)}
-            className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm placeholder-zinc-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:focus:border-blue-500"
+            className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm placeholder-zinc-400 focus:border-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:focus:border-rose-500"
             placeholder="Brief description of what learners will gain from this resource..."
           />
           <div className="mt-1 flex items-center justify-between text-xs text-zinc-500 dark:text-zinc-400">
@@ -154,8 +154,8 @@ function SubmitButton() {
       type="submit"
       disabled={pending}
       className={cn(
-        "w-full rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-medium text-white transition-colors",
-        "hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2",
+        "w-full rounded-lg bg-rose-500 px-4 py-2.5 text-sm font-medium text-white transition-colors",
+        "hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-400 focus:ring-offset-2",
         "disabled:opacity-50 disabled:cursor-not-allowed dark:focus:ring-offset-zinc-900"
       )}
       aria-disabled={pending}

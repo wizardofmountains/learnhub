@@ -103,7 +103,7 @@ export function AuthForm({ defaultMode = "signin" }: AuthFormProps) {
             type="email"
             autoComplete="email"
             required
-            className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm placeholder-zinc-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:focus:border-blue-500"
+            className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm placeholder-zinc-400 focus:border-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:focus:border-rose-500"
             placeholder="you@example.com"
           />
         </div>
@@ -123,7 +123,7 @@ export function AuthForm({ defaultMode = "signin" }: AuthFormProps) {
               type={showPassword ? "text" : "password"}
               autoComplete={mode === "signin" ? "current-password" : "new-password"}
               required
-              className="w-full rounded-lg border border-zinc-300 px-3 py-2 pr-10 text-sm placeholder-zinc-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:focus:border-blue-500"
+              className="w-full rounded-lg border border-zinc-300 px-3 py-2 pr-10 text-sm placeholder-zinc-400 focus:border-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:focus:border-rose-500"
               placeholder={mode === "signin" ? "Enter your password" : "Min. 6 characters"}
             />
             <button
@@ -157,7 +157,7 @@ export function AuthForm({ defaultMode = "signin" }: AuthFormProps) {
                 type={showConfirmPassword ? "text" : "password"}
                 autoComplete="new-password"
                 required
-                className="w-full rounded-lg border border-zinc-300 px-3 py-2 pr-10 text-sm placeholder-zinc-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:focus:border-blue-500"
+                className="w-full rounded-lg border border-zinc-300 px-3 py-2 pr-10 text-sm placeholder-zinc-400 focus:border-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:focus:border-rose-500"
                 placeholder="Re-enter your password"
               />
               <button
@@ -186,7 +186,7 @@ export function AuthForm({ defaultMode = "signin" }: AuthFormProps) {
         <button
           type="button"
           onClick={toggleMode}
-          className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-500 dark:hover:text-blue-400"
+          className="font-medium text-rose-600 hover:text-rose-700 dark:text-rose-500 dark:hover:text-rose-400"
         >
           {mode === "signin" ? "Sign up" : "Sign in"}
         </button>
@@ -203,8 +203,8 @@ function SubmitButton({ mode }: { mode: "signin" | "signup" }) {
       type="submit"
       disabled={pending}
       className={cn(
-        "w-full rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors",
-        "hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2",
+        "w-full rounded-lg bg-rose-500 px-4 py-2 text-sm font-medium text-white transition-colors",
+        "hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-400 focus:ring-offset-2",
         "disabled:opacity-50 disabled:cursor-not-allowed dark:focus:ring-offset-zinc-900"
       )}
       aria-disabled={pending}

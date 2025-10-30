@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BookOpen } from "lucide-react";
+import { Heart } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { UserNav } from "@/components/auth/user-nav";
 
@@ -16,9 +16,9 @@ export async function Header() {
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 font-semibold">
-          <BookOpen className="h-6 w-6 text-blue-600" />
+          <Heart className="h-6 w-6 text-red-600" />
           <span className="text-xl font-bold text-zinc-900 dark:text-zinc-50">
-            LearnHub
+            Babsis Lernspace
           </span>
         </Link>
 
@@ -28,7 +28,7 @@ export async function Header() {
             href="/resources"
             className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
           >
-            Resources
+            Ressourcen
           </Link>
           {user && (
             <>
@@ -36,13 +36,13 @@ export async function Header() {
                 href="/submit"
                 className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
               >
-                Submit
+                Teilen
               </Link>
               <Link
                 href="/dashboard"
                 className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
               >
-                Dashboard
+                Meine Ressourcen
               </Link>
             </>
           )}
@@ -55,9 +55,9 @@ export async function Header() {
           ) : (
             <Link
               href="/login"
-              className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="rounded-lg bg-rose-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-400 focus:ring-offset-2"
             >
-              Sign In
+              Anmelden
             </Link>
           )}
         </div>

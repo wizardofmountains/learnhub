@@ -10,8 +10,8 @@ interface StatsCardProps {
 
 const variantConfig = {
   blue: {
-    bgColor: "bg-blue-100 dark:bg-blue-900/20",
-    iconColor: "text-blue-600 dark:text-blue-500",
+    bgColor: "bg-rose-100 dark:bg-rose-900/20",
+    iconColor: "text-rose-600 dark:text-rose-500",
   },
   green: {
     bgColor: "bg-green-100 dark:bg-green-900/20",

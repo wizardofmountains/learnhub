@@ -70,8 +70,8 @@ function SearchFilterContent() {
           placeholder="Search resources..."
           className={cn(
             "w-full rounded-lg border border-zinc-300 bg-white pl-10 pr-10 py-2.5 text-sm",
-            "placeholder-zinc-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20",
-            "dark:border-zinc-700 dark:bg-zinc-900 dark:placeholder-zinc-500 dark:focus:border-blue-500"
+            "placeholder-zinc-400 focus:border-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-500/20",
+            "dark:border-zinc-700 dark:bg-zinc-900 dark:placeholder-zinc-500 dark:focus:border-rose-500"
           )}
           aria-label="Search resources"
         />
@@ -151,7 +151,7 @@ function FilterButton({ label, value, active, onClick }: FilterButtonProps) {
       className={cn(
         "rounded-full px-3 py-1 text-sm font-medium transition-colors",
         active
-          ? "bg-blue-600 text-white hover:bg-blue-700"
+          ? "bg-rose-500 text-white hover:bg-rose-600"
           : "bg-zinc-100 text-zinc-700 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700"
       )}
       aria-pressed={active}
