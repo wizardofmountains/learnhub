@@ -109,7 +109,7 @@ Types are auto-generated from the database schema:
 1. ✅ Database schema created
 2. ✅ RLS policies configured
 3. ✅ TypeScript types generated
-4. ⏳ Seed data (5 sample resources)
-5. ⏳ Authentication UI
-6. ⏳ CRUD operations
+4. ✅ Seed data script created (5 sample resources)
+5. ✅ Authentication UI complete
+6. ⏳ CRUD operations (resources list, detail, submit)
 
